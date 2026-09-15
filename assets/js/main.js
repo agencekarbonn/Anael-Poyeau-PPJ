@@ -5,18 +5,21 @@
   window.addEventListener('scroll', onScroll, { passive: true });
 
   const carousels = [...document.querySelectorAll('.carousel')];
+  const reviews = document.querySelector('.reviews-carousel');
   const centerCarousel = (carousel) => {
     const cards = carousel.querySelectorAll('.carousel-track > *');
     if (!cards.length) return;
     const middle = cards[Math.floor(cards.length / 2)];
     carousel.scrollLeft = middle.offsetLeft + middle.offsetWidth / 2 - carousel.clientWidth / 2;
   };
-  const centerAll = () => carousels.forEach(centerCarousel);
-  centerAll();
-  window.addEventListener('resize', centerAll);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(centerAll);
-
-  const reviews = document.querySelector('.reviews-carousel');
+  const initCarousels = () => carousels.forEach((carousel) => {
+    if (carousel === reviews) centerCarousel(carousel);
+    else carousel.scrollLeft = 0;
+  });
+  initCarousels();
+  window.addEventListener('resize', initCarousels);
+  window.addEventListener('load', initCarousels);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(initCarousels);
   document.querySelectorAll('.carousel-nav .nav-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       const card = reviews.querySelector('.review-card');
