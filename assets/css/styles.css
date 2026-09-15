@@ -490,7 +490,10 @@ h2.h2-lg { font-size: 64px; line-height: 1.1; }
 .carousel-track > * { flex: 0 0 auto; scroll-snap-align: center; }
 
 .realisations-carousel { margin-top: 75px; }
-.realisations-carousel .carousel-track { gap: 56px; }
+.realisations-carousel .carousel-track {
+  gap: 56px;
+  padding-left: max(var(--pad), calc((100vw - var(--max)) / 2 + var(--pad)));
+}
 .real-card {
   width: 292px;
   height: 313px;
@@ -889,7 +892,6 @@ h2.h2-lg { font-size: 64px; line-height: 1.1; }
   display: flex;
   flex-direction: column;
   width: clamp(240px, 20vw, 300px);
-  min-height: 170px;
   padding: 24px;
   border-radius: 22px;
   background: #d9d9d9;
@@ -898,7 +900,7 @@ h2.h2-lg { font-size: 64px; line-height: 1.1; }
 }
 .review-card:nth-child(odd) { transform: rotate(3deg); }
 .review-card:nth-child(even) { transform: rotate(-2.5deg); }
-.review-card:nth-child(3n + 1) { min-height: 240px; transform: rotate(1deg); }
+.review-card:nth-child(3n + 1) { transform: rotate(1deg); }
 .stars {
   width: 100px;
   height: 18px;
