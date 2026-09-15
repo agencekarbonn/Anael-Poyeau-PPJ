@@ -818,7 +818,7 @@ h2.h2-lg { font-size: 64px; line-height: 1.1; }
   margin-right: -240px;
   filter: drop-shadow(0 40px 40px rgba(0, 0, 0, .45));
 }
-.contact-visual img { width: auto; max-height: 58vh; }
+.contact-visual img { width: auto; height: 80vh; }
 
 /* ---------- Avis ---------- */
 .reviews {
