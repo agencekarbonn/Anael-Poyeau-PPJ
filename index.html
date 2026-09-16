@@ -201,8 +201,8 @@
               <img src="assets/img/icon-plantation.png" alt="" width="68" height="68" aria-hidden="true">
             </div>
             <div class="service-text">
-              <h3>Plantation &amp; aménagement extérieur</h3>
-              <p>Plantation, mise en place de végétaux et petits travaux d’aménagement pour améliorer et structurer vos espaces extérieurs.</p>
+              <h3>Plantation, aménagement extérieur & pose de clôture</h3>
+              <p>Plantation, mise en place de végétaux et petits travaux d’aménagement pour améliorer et structurer vos espaces extérieurs. <br><br>Nous pouvons poser également vos clôtures. </p>
             </div>
             <span class="service-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
           </article>
@@ -301,6 +301,7 @@
         </div>
         <form class="quote-form" action="#" method="post">
           <h3>Demandez votre devis<br class="br-desktop">gratuit</h3>
+          Vous avez besoin d’un entretien, d’une remise au propre ou d’un aménagement extérieur ? Décrivez-nous votre projet et nous vous recontacterons rapidement.
           <div class="form-row">
             <input type="text" name="nom" placeholder="Nom" aria-label="Nom" autocomplete="family-name" required>
             <input type="text" name="prenom" placeholder="Prénom" aria-label="Prénom" autocomplete="given-name" required>
@@ -318,9 +319,9 @@
           <button type="submit" class="btn btn-green btn-block">Envoyer ma demande</button>
           <p class="form-status" role="status" aria-live="polite"></p>
         </form>
-        <div class="contact-visual">
-          <img src="assets/img/camion.png" alt="Camionnette Anaël Poyeau PPJ" width="731" height="410">
-        </div>
+      </div>
+      <div class="contact-visual">
+        <img src="assets/img/camion.png" alt="Camionnette Anaël Poyeau PPJ" width="731" height="410">
       </div>
     </section>
 
@@ -374,7 +375,11 @@
         </div>
       </div>
       <svg class="reviews-wave" viewBox="0 0 1440 380" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-        <path d="M0,0 Q640,220 1440,320 V380 H0 Z" style="fill: var(--green-950)"/>
+        <defs>
+          <filter id="reviewsWaveBlur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14"/></filter>
+        </defs>
+        <path d="M0,15 Q640,215 1440,310 L1440,340 L0,340 Z" fill="rgba(0, 0, 0, .55)" filter="url(#reviewsWaveBlur)"/>
+        <path d="M0,25 Q640,225 1440,320 V380 H0 Z" style="fill: var(--green-950)"/>
       </svg>
     </section>
 
@@ -387,7 +392,10 @@
           <a class="logo" href="#accueil" aria-label="Anaël Poyeau PPJ — retour à l'accueil">
             <img src="assets/img/logo.png" alt="" width="124" height="52">
           </a>
-          <p>Nettoyage, démoussage et entretien d'extérieurs pour les particuliers et les professionnels.</p>
+          <p>Vos travaux d’extérieur réalisés par un professionnel.</p>
+          <a class="social-link" href="https://www.facebook.com/people/PPJ-parc-et-jardins/61570086665334/?mibextid=wwXIfr&rdid=GQZzBIgB7HY8EOvH&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F15AWqBijZq%2F%3Fmibextid%3DwwXIfr" target="_blank" rel="noopener noreferrer" aria-label="PPJ parc et jardins sur Facebook">
+            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+          </a>
         </div>
         <div class="footer-col">
           <h4>Navigation</h4>
