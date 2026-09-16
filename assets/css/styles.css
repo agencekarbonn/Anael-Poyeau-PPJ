@@ -822,11 +822,10 @@ h2.h2-lg { font-size: 64px; line-height: 1.1; }
 .form-status:empty { display: none; }
 
 .contact-visual {
-  position: absolute;
-  top: 50%;
-  right: -340px;
-  z-index: 1;
-  transform: translateY(-45%);
+  justify-self: end;
+  align-self: center;
+  width: auto;
+  margin-right: calc(-410px - max(0px, (100vw - var(--max)) / 2));
   filter: drop-shadow(0 40px 40px rgba(0, 0, 0, .45));
   pointer-events: none;
 }
@@ -1032,6 +1031,7 @@ h2.h2-lg { font-size: 64px; line-height: 1.1; }
   .map-circle { width: 300px; height: 300px; margin-left: 0; }
   .contact-inner, .reviews-head { padding-inline: var(--pad); }
   .contact-inner { grid-template-columns: 480px minmax(0, 1fr); }
+  .contact-visual { margin-right: calc(-380px - max(0px, (100vw - var(--max)) / 2)); }
 }
 
 @media (max-width: 1024px) {
@@ -1064,10 +1064,9 @@ h2.h2-lg { font-size: 64px; line-height: 1.1; }
   .contact-inner { grid-template-columns: 1fr; row-gap: 40px; }
   .quote-form { max-width: 560px; }
   .contact-visual {
-    position: static;
-    transform: none;
+    justify-self: center;
     width: min(100%, 560px);
-    margin: 40px auto 0;
+    margin: 0;
     pointer-events: auto;
   }
   .contact-visual img { width: 100%; height: auto; }
