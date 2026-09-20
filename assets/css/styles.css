@@ -26,11 +26,7 @@
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-  overflow-x: hidden;
-}
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -40,7 +36,6 @@ body {
   background: var(--white);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  overscroll-behavior-x: none;
 }
 body.nav-open { overflow: hidden; }
 img, svg { display: block; max-width: 100%; }
