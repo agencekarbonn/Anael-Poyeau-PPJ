@@ -26,7 +26,11 @@
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -36,6 +40,7 @@ body {
   background: var(--white);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  overscroll-behavior-x: none;
 }
 body.nav-open { overflow: hidden; }
 img, svg { display: block; max-width: 100%; }
@@ -472,11 +477,38 @@ h2.h2-lg { font-size: 64px; line-height: 1.1; }
   position: relative;
   background: var(--black);
   color: var(--white);
-  padding: 80px 0 48px;
-  overflow: hidden;
 }
 .realisations .section-head { position: relative; }
 .realisations h2 { margin-top: 13px; }
+.realisations-pin-spacer { position: relative; }
+.realisations-pin-sticky {
+  position: relative;
+  background: var(--black);
+  color: var(--white);
+  padding: 80px 0 48px;
+}
+@media (min-width: 1025px) {
+  .realisations-pin-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    padding: 40px 0;
+  }
+  .realisations-carousel { overflow: visible; }
+  .realisations-carousel .carousel-track {
+    margin-inline: 0;
+    will-change: transform;
+  }
+}
+@media (max-width: 1024px) {
+  .realisations-pin-spacer { height: auto !important; }
+  .realisations-pin-sticky { position: static; height: auto; overflow: visible; }
+  .realisations-carousel .carousel-track { transform: none !important; }
+}
 
 .carousel {
   position: relative;
@@ -882,6 +914,14 @@ h2.h2-lg { font-size: 64px; line-height: 1.1; }
   text-underline-offset: 2px;
 }
 .form-checkbox a:hover { color: var(--green-400); }
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+  width: 1px;
+  height: 1px;
+}
 
 .contact-visual {
   justify-self: end;
@@ -1126,13 +1166,7 @@ h2.h2-lg { font-size: 64px; line-height: 1.1; }
   .contact { padding: 160px 0 120px; }
   .contact-inner { grid-template-columns: 1fr; row-gap: 40px; }
   .quote-form { max-width: 560px; }
-  .contact-visual {
-    justify-self: center;
-    width: min(100%, 560px);
-    margin: 0;
-    pointer-events: auto;
-  }
-  .contact-visual img { width: 100%; height: auto; }
+  .contact-visual { display: none; }
   .carousel-nav { margin-bottom: 0; }
 }
 
