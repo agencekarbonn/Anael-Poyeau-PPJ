@@ -99,10 +99,29 @@
   }
 
   const form = document.querySelector('.quote-form');
+  const proFields = form?.querySelector('.pro-fields');
+  const proInputs = proFields ? [...proFields.querySelectorAll('input')] : [];
+  const typeRadios = form ? [...form.querySelectorAll('input[name="type_client"]')] : [];
+
+  const updateProFields = () => {
+    const isPro = form?.querySelector('input[name="type_client"]:checked')?.value === 'professionnel';
+    proFields.hidden = !isPro;
+    proInputs.forEach((input) => {
+      input.required = isPro;
+      if (!isPro) input.value = '';
+    });
+  };
+
+  if (typeRadios.length) {
+    typeRadios.forEach((radio) => radio.addEventListener('change', updateProFields));
+    updateProFields();
+  }
+
   form?.addEventListener('submit', (event) => {
     event.preventDefault();
     if (!form.reportValidity()) return;
     form.querySelector('.form-status').textContent = 'Merci ! Votre demande a bien été envoyée, nous vous recontactons sous 48h.';
     form.reset();
+    updateProFields();
   });
 })();
