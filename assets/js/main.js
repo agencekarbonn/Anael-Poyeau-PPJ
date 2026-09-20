@@ -6,16 +6,20 @@
 
   const carousels = [...document.querySelectorAll('.carousel')];
   const reviews = document.querySelector('.reviews-carousel');
+  const mobileServiceCards = document.querySelector('.services-cards');
   const centerCarousel = (carousel) => {
     const cards = carousel.querySelectorAll('.carousel-track > *');
     if (!cards.length) return;
     const middle = cards[Math.floor(cards.length / 2)];
     carousel.scrollLeft = middle.offsetLeft + middle.offsetWidth / 2 - carousel.clientWidth / 2;
   };
-  const initCarousels = () => carousels.forEach((carousel) => {
-    if (carousel === reviews) centerCarousel(carousel);
-    else carousel.scrollLeft = 0;
-  });
+  const initCarousels = () => {
+    carousels.forEach((carousel) => {
+      if (carousel === reviews) centerCarousel(carousel);
+      else carousel.scrollLeft = 0;
+    });
+    if (mobileServiceCards && window.innerWidth <= 1024) mobileServiceCards.scrollLeft = 0;
+  };
   initCarousels();
   window.addEventListener('resize', initCarousels);
   window.addEventListener('load', initCarousels);
