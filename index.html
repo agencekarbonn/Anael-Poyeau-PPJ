@@ -75,6 +75,7 @@
             <a class="btn btn-green btn-lg" href="#contact">Demander un devis gratuit <img src="assets/img/arrow-cta.png" alt="" width="40" height="40" class="btn-arrow"></a>
             <a class="btn btn-outline btn-lg" href="#realisations">En savoir plus <img src="assets/img/arrow-down.png" alt="" width="40" height="40" class="btn-arrow"></a>
           </div>
+          <p class="hero-availability">Disponible en contrat annuel, pour particuliers &amp; professionnels</p>
         </div>
         <div class="hero-visual" role="img" aria-label="Photo d'un extérieur nettoyé et entretenu">
           <img src="assets/photos/2-3.jpg" alt="" width="466" height="466">
@@ -301,7 +302,18 @@
         </div>
         <form class="quote-form" action="#" method="post">
           <h3>Demandez votre devis<br class="br-desktop">gratuit</h3>
-          Vous avez besoin d’un entretien, d’une remise au propre ou d’un aménagement extérieur ? Décrivez-nous votre projet et nous vous recontacterons rapidement.
+          <p class="contact-intro">Vous avez besoin d’un entretien, d’une remise au propre ou d’un aménagement extérieur ? Décrivez-nous votre projet et nous vous recontacterons rapidement.</p>
+          <div class="form-choice" role="radiogroup" aria-label="Vous êtes">
+            <span class="choice-label">Vous êtes</span>
+            <label class="choice"><input type="radio" name="type_client" value="particulier" required>Particulier</label>
+            <label class="choice"><input type="radio" name="type_client" value="professionnel" required>Professionnel</label>
+          </div>
+          <div class="pro-fields" hidden>
+            <input type="text" name="entreprise" placeholder="Raison sociale (nom de l'entreprise)" aria-label="Raison sociale" autocomplete="organization">
+            <input type="text" name="siret" placeholder="Numéro SIRET (14 chiffres)" aria-label="Numéro SIRET" inputmode="numeric" pattern="[0-9]{14}" maxlength="14" title="14 chiffres">
+            <input type="email" name="email_pro" placeholder="Adresse e-mail professionnelle" aria-label="Adresse e-mail professionnelle">
+            <input type="tel" name="telephone_pro" placeholder="Téléphone professionnel" aria-label="Téléphone professionnel">
+          </div>
           <div class="form-row">
             <input type="text" name="nom" placeholder="Nom" aria-label="Nom" autocomplete="family-name" required>
             <input type="text" name="prenom" placeholder="Prénom" aria-label="Prénom" autocomplete="given-name" required>
@@ -310,12 +322,20 @@
           <input type="tel" name="telephone" placeholder="Téléphone" aria-label="Téléphone" autocomplete="tel">
           <select name="service" aria-label="Service souhaité" required>
             <option value="" selected disabled>Service souhaité</option>
-            <option value="nettoyage">Nettoyage haute pression</option>
-            <option value="espaces-verts">Entretien des espaces verts</option>
-            <option value="demoussage">Démoussage &amp; traitement</option>
+            <option value="tonte-debroussaillage">Tonte &amp; débroussaillage</option>
+            <option value="taille">Taille de haies, arbustes</option>
+            <option value="abattage">Abattage d'arbres</option>
+            <option value="plantation">Plantation</option>
+            <option value="desherbage">Désherbage</option>
             <option value="autre">Autre demande</option>
           </select>
+          <div class="form-choice" role="radiogroup" aria-label="Type de contrat">
+            <span class="choice-label">Type de contrat</span>
+            <label class="choice"><input type="radio" name="contrat" value="annuel" required>Contrat annuel</label>
+            <label class="choice"><input type="radio" name="contrat" value="occasionnel" required>Contrat occasionnel</label>
+          </div>
           <textarea name="message" rows="3" placeholder="Décrivez votre projet…" aria-label="Votre message"></textarea>
+          <label class="form-checkbox"><input type="checkbox" name="privacy" value="1" required><span>J’ai lu et j’accepte la <a href="#" target="_blank" rel="noopener noreferrer">Politique de Confidentialité</a>.</span></label>
           <button type="submit" class="btn btn-green btn-block">Envoyer ma demande</button>
           <p class="form-status" role="status" aria-live="polite"></p>
         </form>
@@ -433,6 +453,7 @@
       </div>
       <div class="footer-bottom">
         <p>© 2026 Anaël Poyeau PPJ — Tous droits réservés</p>
+        <p class="footer-legal"><a href="#">Politique de confidentialité</a><a href="#">Mentions légales</a></p>
         <p>Site imaginé, conçu et développé par <a href="https://karbonn.fr/" target="_blank" rel="noopener noreferrer">KARBONN.</a></p>
       </div>
     </div>
