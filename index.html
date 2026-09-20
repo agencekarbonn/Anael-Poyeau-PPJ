@@ -14,6 +14,12 @@
 </head>
 <body>
 
+  <div class="preloader" id="preloader" role="status" aria-label="Chargement du site">
+    <img class="preloader-logo" src="assets/img/logo.png" alt="Anaël Poyeau PPJ" width="160" height="67">
+    <div class="preloader-progress"><span class="preloader-bar"></span></div>
+    <p class="preloader-count">0%</p>
+  </div>
+
   <header class="site-header">
     <div class="container header-inner">
       <a class="logo" href="#accueil" aria-label="Anaël Poyeau PPJ — retour à l'accueil">
@@ -44,9 +50,6 @@
           <a class="mobile-nav-logo" href="#accueil" aria-label="Anaël Poyeau PPJ — retour à l'accueil">
             <img src="assets/img/logo.png" alt="" width="112" height="46">
           </a>
-          <button type="button" class="mobile-nav-close" aria-label="Fermer le menu">
-            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-          </button>
         </div>
         <nav aria-label="Navigation mobile">
           <a href="#accueil"><span class="mobile-nav-index">01</span><span class="mobile-nav-label">Accueil</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
@@ -144,6 +147,9 @@
               <figure class="real-card"><img src="assets/photos/image16.jpeg" alt="" width="292" height="313"><figcaption class="sr-only">Réalisation 25</figcaption></figure>
               <figure class="real-card"><img src="assets/photos/image17.jpeg" alt="" width="292" height="313"><figcaption class="sr-only">Réalisation 26</figcaption></figure>
             </div>
+          </div>
+          <div class="realisations-progress" aria-hidden="true">
+            <span class="realisations-progress-bar"></span>
           </div>
         </div>
       </div>
@@ -340,7 +346,7 @@
             <label class="choice"><input type="radio" name="contrat" value="occasionnel" required>Contrat occasionnel</label>
           </div>
           <textarea name="message" rows="3" placeholder="Décrivez votre projet…" aria-label="Votre message"></textarea>
-          <label class="form-checkbox"><input type="checkbox" name="privacy" value="1" required><span>J’ai lu et j’accepte la <a href="#" target="_blank" rel="noopener noreferrer">Politique de Confidentialité</a>.</span></label>
+          <label class="form-checkbox"><input type="checkbox" name="privacy" value="1" required><span>J’ai lu et j’accepte la <a href="#" data-modal-open="modal-privacy">Politique de Confidentialité</a>.</span></label>
           <input type="text" name="website" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" placeholder="Ne pas remplir">
           <button type="submit" class="btn btn-green btn-block">Envoyer ma demande</button>
           <p class="form-status" role="status" aria-live="polite"></p>
@@ -459,11 +465,47 @@
       </div>
       <div class="footer-bottom">
         <p>© 2026 Anaël Poyeau PPJ — Tous droits réservés</p>
-        <p class="footer-legal"><a href="#">Politique de confidentialité</a><a href="#">Mentions légales</a></p>
+        <p class="footer-legal"><a href="#" data-modal-open="modal-privacy">Politique de confidentialité</a><a href="#" data-modal-open="modal-legal">Mentions légales</a></p>
         <p>Site imaginé, conçu et développé par <a href="https://karbonn.fr/" target="_blank" rel="noopener noreferrer">KARBONN.</a></p>
       </div>
     </div>
   </footer>
+
+  <div class="legal-modal" id="modal-privacy" role="dialog" aria-modal="true" aria-labelledby="modal-privacy-title">
+    <div class="legal-modal-head">
+      <h2 id="modal-privacy-title">Politique de confidentialité</h2>
+      <button type="button" class="legal-modal-close" data-modal-close aria-label="Fermer">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="legal-modal-body">
+      <h3>Collecte des données</h3>
+      <p>Les informations recueillies via le formulaire de contact (nom, prénom, adresse e-mail, numéro de téléphone et, le cas échéant, informations professionnelles) sont utilisées uniquement pour répondre à votre demande de devis et assurer le suivi de nos prestations.</p>
+      <h3>Utilisation des données</h3>
+      <p>Vos données ne sont ni vendues, ni cédées, ni partagées avec des tiers à des fins commerciales. Elles sont conservées pendant la durée nécessaire au traitement de votre demande et à la relation commerciale qui pourrait en découler.</p>
+      <h3>Cookies</h3>
+      <p>Ce site n'utilise pas de cookies de suivi ou de cookies publicitaires.</p>
+      <h3>Vos droits</h3>
+      <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'opposition et de suppression de vos données personnelles. Pour exercer ces droits, contactez-nous à <a href="mailto:ppj.parcsetjardins@gmail.com">ppj.parcsetjardins@gmail.com</a>.</p>
+    </div>
+  </div>
+
+  <div class="legal-modal" id="modal-legal" role="dialog" aria-modal="true" aria-labelledby="modal-legal-title">
+    <div class="legal-modal-head">
+      <h2 id="modal-legal-title">Mentions légales</h2>
+      <button type="button" class="legal-modal-close" data-modal-close aria-label="Fermer">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="legal-modal-body">
+      <h3>Éditeur du site</h3>
+      <p>Anaël Poyeau PPJ — Parcs et Jardins<br>Gauciel (27930), France<br>Téléphone : 06 31 77 28 44<br>E-mail : <a href="mailto:ppj.parcsetjardins@gmail.com">ppj.parcsetjardins@gmail.com</a></p>
+      <h3>Conception et développement</h3>
+      <p>Site imaginé, conçu et développé par <a href="https://karbonn.fr/" target="_blank" rel="noopener noreferrer">KARBONN.</a></p>
+      <h3>Propriété intellectuelle</h3>
+      <p>L'ensemble des contenus présents sur ce site (textes, images, logo) est protégé par le droit de la propriété intellectuelle. Toute reproduction ou utilisation sans autorisation préalable est interdite.</p>
+    </div>
+  </div>
 
   <script src="assets/js/main.js" defer></script>
 </body>
