@@ -98,6 +98,38 @@
     window.addEventListener('resize', updateActiveCard);
   }
 
+  // Réalisations : la section reste "épinglée" (position: sticky) pendant que les photos
+  // défilent horizontalement au fil du scroll, puis le scroll normal reprend (dans les deux sens).
+  const realisationsPin = document.querySelector('[data-realisations-pin]');
+  const realisationsCarousel = document.querySelector('[data-realisations-carousel]');
+  const realisationsTrack = realisationsCarousel?.querySelector('.carousel-track');
+  if (realisationsPin && realisationsCarousel && realisationsTrack) {
+    const REAL_BREAKPOINT = 1024;
+    const getDistance = () => Math.max(0, realisationsTrack.scrollWidth - realisationsCarousel.clientWidth);
+    const setPinHeight = () => {
+      if (window.innerWidth <= REAL_BREAKPOINT) {
+        realisationsPin.style.height = '';
+        realisationsTrack.style.transform = '';
+        return;
+      }
+      realisationsPin.style.height = `${getDistance() + window.innerHeight}px`;
+    };
+    const updateRealisations = () => {
+      if (window.innerWidth <= REAL_BREAKPOINT) return;
+      const distance = getDistance();
+      const maxScroll = Math.max(0, realisationsPin.offsetHeight - window.innerHeight);
+      const rect = realisationsPin.getBoundingClientRect();
+      const progress = maxScroll > 0 ? Math.min(Math.max(-rect.top / maxScroll, 0), 1) : 0;
+      realisationsTrack.style.transform = `translateX(${-progress * distance}px)`;
+    };
+    setPinHeight();
+    updateRealisations();
+    window.addEventListener('scroll', updateRealisations, { passive: true });
+    window.addEventListener('resize', () => { setPinHeight(); updateRealisations(); });
+    window.addEventListener('load', () => { setPinHeight(); updateRealisations(); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { setPinHeight(); updateRealisations(); });
+  }
+
   const form = document.querySelector('.quote-form');
   const proFields = form?.querySelector('.pro-fields');
   const proInputs = proFields ? [...proFields.querySelectorAll('input')] : [];
@@ -119,6 +151,8 @@
 
   form?.addEventListener('submit', (event) => {
     event.preventDefault();
+    const honeypot = form.querySelector('.form-honeypot');
+    if (honeypot && honeypot.value.trim() !== '') return;
     if (!form.reportValidity()) return;
     form.querySelector('.form-status').textContent = 'Merci ! Votre demande a bien été envoyée, nous vous recontactons sous 48h.';
     form.reset();
