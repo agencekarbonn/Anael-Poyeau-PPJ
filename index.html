@@ -311,46 +311,75 @@
           <span class="label">Nous Contacter</span>
           <h2>Un projet ?<br>Laissez-nous vous aider</h2>
         </div>
-        <form class="quote-form" action="#" method="post">
+        <div class="quote-form-wrap">
           <h3>Demandez votre devis<br class="br-desktop"> gratuit</h3>
           <p class="contact-intro">Vous avez besoin d’un entretien, d’une remise au propre ou d’un aménagement extérieur ? Décrivez-nous votre projet et nous vous recontacterons rapidement.</p>
           <div class="form-choice" role="radiogroup" aria-label="Vous êtes">
             <span class="choice-label">Vous êtes</span>
-            <label class="choice"><input type="radio" name="type_client" value="particulier" required>Particulier</label>
-            <label class="choice"><input type="radio" name="type_client" value="professionnel" required>Professionnel</label>
+            <label class="choice"><input type="radio" name="type_client" value="particulier" checked>Particulier</label>
+            <label class="choice"><input type="radio" name="type_client" value="professionnel">Professionnel</label>
           </div>
-          <div class="pro-fields" hidden>
-            <input type="text" name="entreprise" placeholder="Raison sociale (nom de l'entreprise)" aria-label="Raison sociale" autocomplete="organization">
-            <input type="text" name="siret" placeholder="Numéro SIRET (14 chiffres)" aria-label="Numéro SIRET" inputmode="numeric" pattern="[0-9]{14}" maxlength="14" title="14 chiffres">
-            <input type="email" name="email_pro" placeholder="Adresse e-mail professionnelle" aria-label="Adresse e-mail professionnelle">
-            <input type="tel" name="telephone_pro" placeholder="Téléphone professionnel" aria-label="Téléphone professionnel">
-          </div>
-          <div class="form-row">
-            <input type="text" name="nom" placeholder="Nom" aria-label="Nom" autocomplete="family-name" required>
-            <input type="text" name="prenom" placeholder="Prénom" aria-label="Prénom" autocomplete="given-name" required>
-          </div>
-          <input type="email" name="email" placeholder="Adresse e-mail" aria-label="Adresse e-mail" autocomplete="email" required>
-          <input type="tel" name="telephone" placeholder="Téléphone" aria-label="Téléphone" autocomplete="tel">
-          <select name="service" aria-label="Service souhaité" required>
-            <option value="" selected disabled>Service souhaité</option>
-            <option value="tonte-debroussaillage">Tonte &amp; débroussaillage</option>
-            <option value="taille">Taille de haies, arbustes</option>
-            <option value="abattage">Abattage d'arbres</option>
-            <option value="plantation">Plantation</option>
-            <option value="desherbage">Désherbage</option>
-            <option value="autre">Autre demande</option>
-          </select>
-          <div class="form-choice" role="radiogroup" aria-label="Type de contrat">
-            <span class="choice-label">Type de contrat</span>
-            <label class="choice"><input type="radio" name="contrat" value="annuel" required>Contrat annuel</label>
-            <label class="choice"><input type="radio" name="contrat" value="occasionnel" required>Contrat occasionnel</label>
-          </div>
-          <textarea name="message" rows="3" placeholder="Décrivez votre projet…" aria-label="Votre message"></textarea>
-          <label class="form-checkbox"><input type="checkbox" name="privacy" value="1" required><span>J’ai lu et j’accepte la <a href="#" data-modal-open="modal-privacy">Politique de Confidentialité</a>.</span></label>
-          <input type="text" name="website" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" placeholder="Ne pas remplir">
-          <button type="submit" class="btn btn-green btn-block">Envoyer ma demande</button>
-          <p class="form-status" role="status" aria-live="polite"></p>
-        </form>
+
+          <form class="quote-form" id="form-particulier" action="https://formspree.io/f/xnpnpydn" method="POST">
+            <div class="form-row">
+              <input type="text" name="nom" placeholder="Nom" aria-label="Nom" autocomplete="family-name" required>
+              <input type="text" name="prenom" placeholder="Prénom" aria-label="Prénom" autocomplete="given-name" required>
+            </div>
+            <input type="email" name="email" placeholder="Adresse e-mail" aria-label="Adresse e-mail" autocomplete="email" required>
+            <input type="tel" name="telephone" placeholder="Téléphone" aria-label="Téléphone" autocomplete="tel" required>
+            <select name="service" aria-label="Service souhaité" required>
+              <option value="" selected disabled>Service souhaité</option>
+              <option value="tonte-debroussaillage">Tonte &amp; débroussaillage</option>
+              <option value="taille">Taille de haies, arbustes</option>
+              <option value="abattage">Abattage d'arbres</option>
+              <option value="plantation">Plantation</option>
+              <option value="desherbage">Désherbage</option>
+              <option value="petits-travaux">Petits travaux extérieur</option>
+              <option value="autre">Autre demande</option>
+            </select>
+            <div class="form-choice" role="radiogroup" aria-label="Type de contrat">
+              <span class="choice-label">Type de contrat</span>
+              <label class="choice"><input type="radio" name="contrat" value="annuel" required>Contrat annuel</label>
+              <label class="choice"><input type="radio" name="contrat" value="occasionnel" required>Contrat occasionnel</label>
+            </div>
+            <textarea name="message" rows="3" placeholder="Décrivez votre projet…" aria-label="Votre message"></textarea>
+            <label class="form-checkbox"><input type="checkbox" name="privacy" value="1" required><span>J’ai lu et j’accepte la <a href="#" data-modal-open="modal-privacy">Politique de Confidentialité</a>.</span></label>
+            <input type="text" name="_gotcha" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" placeholder="Ne pas remplir">
+            <button type="submit" class="btn btn-green btn-block">Envoyer ma demande</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <form class="quote-form" id="form-professionnel" action="https://formspree.io/f/mwlplgkb" method="POST" hidden>
+            <input type="text" name="entreprise" placeholder="Raison sociale (nom de l'entreprise)" aria-label="Raison sociale" autocomplete="organization" required>
+            <input type="text" name="siret" placeholder="Numéro SIRET (14 chiffres)" aria-label="Numéro SIRET" inputmode="numeric" pattern="[0-9]{14}" maxlength="14" title="14 chiffres" required>
+            <input type="email" name="email" placeholder="Adresse e-mail professionnelle" aria-label="Adresse e-mail professionnelle" autocomplete="email" required>
+            <input type="tel" name="telephone" placeholder="Téléphone professionnel" aria-label="Téléphone professionnel" autocomplete="tel" required>
+            <div class="form-row">
+              <input type="text" name="nom" placeholder="Nom" aria-label="Nom" autocomplete="family-name" required>
+              <input type="text" name="prenom" placeholder="Prénom" aria-label="Prénom" autocomplete="given-name" required>
+            </div>
+            <select name="service" aria-label="Service souhaité" required>
+              <option value="" selected disabled>Service souhaité</option>
+              <option value="tonte-debroussaillage">Tonte &amp; débroussaillage</option>
+              <option value="taille">Taille de haies, arbustes</option>
+              <option value="abattage">Abattage d'arbres</option>
+              <option value="plantation">Plantation</option>
+              <option value="desherbage">Désherbage</option>
+              <option value="petits-travaux">Petits travaux extérieur</option>
+              <option value="autre">Autre demande</option>
+            </select>
+            <div class="form-choice" role="radiogroup" aria-label="Type de contrat">
+              <span class="choice-label">Type de contrat</span>
+              <label class="choice"><input type="radio" name="contrat_pro" value="annuel" required>Contrat annuel</label>
+              <label class="choice"><input type="radio" name="contrat_pro" value="occasionnel" required>Contrat occasionnel</label>
+            </div>
+            <textarea name="message" rows="3" placeholder="Décrivez votre projet…" aria-label="Votre message"></textarea>
+            <label class="form-checkbox"><input type="checkbox" name="privacy" value="1" required><span>J’ai lu et j’accepte la <a href="#" data-modal-open="modal-privacy">Politique de Confidentialité</a>.</span></label>
+            <input type="text" name="_gotcha" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" placeholder="Ne pas remplir">
+            <button type="submit" class="btn btn-green btn-block">Envoyer ma demande</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
         <div class="contact-visual">
           <img src="assets/img/camion.png" alt="Camionnette Anaël Poyeau PPJ" width="731" height="410">
         </div>
@@ -465,7 +494,7 @@
       </div>
       <div class="footer-bottom">
         <p>© 2026 Anaël Poyeau PPJ — Tous droits réservés</p>
-        <p class="footer-legal"><a href="#" data-modal-open="modal-privacy">Politique de confidentialité</a><a href="#" data-modal-open="modal-legal">Mentions légales</a></p>
+        <p class="footer-legal"><a href="#" data-modal-open="modal-privacy">Politique de confidentialité</a><a href="#" data-modal-open="modal-cookies">Politique de cookies</a><a href="#" data-modal-open="modal-legal">Mentions légales</a><a href="#" data-modal-open="modal-cgu">CGU</a></p>
         <p>Site imaginé, conçu et développé par <a href="https://karbonn.fr/" target="_blank" rel="noopener noreferrer">KARBONN.</a></p>
       </div>
     </div>
@@ -474,36 +503,549 @@
   <div class="legal-modal" id="modal-privacy" role="dialog" aria-modal="true" aria-labelledby="modal-privacy-title">
     <div class="legal-modal-head">
       <h2 id="modal-privacy-title">Politique de confidentialité</h2>
-      <button type="button" class="legal-modal-close" data-modal-close aria-label="Fermer">
-        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-      </button>
+      <div class="legal-modal-actions">
+        <button type="button" class="legal-modal-print" aria-label="Imprimer la politique de confidentialité">
+          <i class="fa-solid fa-print" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="legal-modal-close" data-modal-close aria-label="Fermer">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
     </div>
     <div class="legal-modal-body">
-      <h3>Collecte des données</h3>
-      <p>Les informations recueillies via le formulaire de contact (nom, prénom, adresse e-mail, numéro de téléphone et, le cas échéant, informations professionnelles) sont utilisées uniquement pour répondre à votre demande de devis et assurer le suivi de nos prestations.</p>
-      <h3>Utilisation des données</h3>
-      <p>Vos données ne sont ni vendues, ni cédées, ni partagées avec des tiers à des fins commerciales. Elles sont conservées pendant la durée nécessaire au traitement de votre demande et à la relation commerciale qui pourrait en découler.</p>
-      <h3>Cookies</h3>
-      <p>Ce site n'utilise pas de cookies de suivi ou de cookies publicitaires.</p>
-      <h3>Vos droits</h3>
-      <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'opposition et de suppression de vos données personnelles. Pour exercer ces droits, contactez-nous à <a href="mailto:ppj.parcsetjardins@gmail.com">ppj.parcsetjardins@gmail.com</a>.</p>
+      <h3>1. Introduction</h3>
+      <p>La présente Politique de confidentialité a pour objectif d'informer les utilisateurs du site :<br>ppjparcsetjardins.fr</p>
+      <p>sur la collecte, l'utilisation, la conservation et la protection de leurs données personnelles.</p>
+      <p>La protection des données personnelles constitue un engagement important pour PPJ, qui s'engage à respecter le Règlement Général sur la Protection des Données (RGPD) ainsi que la réglementation française applicable.</p>
+
+      <h3>2. Responsable du traitement des données personnelles</h3>
+      <p>Le responsable du traitement des données personnelles collectées via le site est :</p>
+      <p>PPJ<br>Entreprise Individuelle (Micro-entreprise)<br>Représentée par : Anael Poyeau</p>
+      <p><strong>Adresse :</strong><br>Gauciel (27930)<br>France</p>
+      <p>Téléphone : 06 31 77 28 44<br>Email : <a href="mailto:ppj.parcsetjardins@gmail.com">ppj.parcsetjardins@gmail.com</a></p>
+      <p>PPJ est responsable de l'utilisation des données collectées dans le cadre des demandes de contact, demandes de devis et échanges commerciaux.</p>
+
+      <h3>3. Rôle de Karbonn.</h3>
+      <p>Le site internet ppjparcsetjardins.fr a été conçu, développé et est techniquement géré par :</p>
+      <p>Karbonn. – Communication Digitale &amp; Développement Web<br>Représentée par : Rémy Cormon<br>SIRET : 942 917 113 00014</p>
+      <p><strong>Adresse :</strong><br>11 Rue De Dauvet<br>27150 Mainneville<br>France</p>
+      <p>Email : <a href="mailto:hello@karbonn.fr">hello@karbonn.fr</a></p>
+      <p>Karbonn. intervient uniquement en qualité de prestataire technique pour :</p>
+      <ul>
+        <li>la conception du site ;</li>
+        <li>son développement ;</li>
+        <li>son hébergement technique ou suivi technique selon les services souscrits ;</li>
+        <li>sa maintenance ;</li>
+        <li>ses mises à jour.</li>
+      </ul>
+      <p>Karbonn. n'utilise pas les données personnelles collectées via le formulaire à des fins commerciales ou personnelles.</p>
+
+      <h3>4. Données personnelles collectées</h3>
+      <p>Lorsqu'un utilisateur utilise le formulaire de contact présent sur le site, les données suivantes peuvent être collectées :</p>
+      <ul>
+        <li>Nom complet ;</li>
+        <li>Numéro de téléphone ;</li>
+        <li>Adresse email ;</li>
+        <li>Type de prestation souhaitée ;</li>
+        <li>Message envoyé ;</li>
+        <li>Date d'envoi de la demande.</li>
+      </ul>
+      <p>Ces informations sont nécessaires afin de permettre à PPJ de répondre aux demandes reçues.</p>
+
+      <h3>5. Finalités du traitement</h3>
+      <p>Les données collectées sont utilisées uniquement pour les finalités suivantes :</p>
+      <ul>
+        <li>répondre aux demandes de contact ;</li>
+        <li>comprendre les besoins exprimés par les visiteurs ;</li>
+        <li>établir des devis ;</li>
+        <li>reprendre contact avec les personnes intéressées ;</li>
+        <li>assurer le suivi des échanges commerciaux.</li>
+      </ul>
+      <p>Les données personnelles ne sont jamais utilisées pour :</p>
+      <ul>
+        <li>vendre des informations à des tiers ;</li>
+        <li>envoyer des communications publicitaires non sollicitées ;</li>
+        <li>créer un profil marketing des utilisateurs.</li>
+      </ul>
+
+      <h3>6. Base légale du traitement</h3>
+      <p>Le traitement des données repose sur :</p>
+      <p><strong>Les mesures précontractuelles</strong><br>Lorsque l'utilisateur contacte PPJ afin d'obtenir des informations, une estimation ou un devis.</p>
+      <p><strong>L'intérêt légitime</strong><br>Afin de permettre à l'entreprise de répondre aux demandes reçues et d'assurer le suivi de ses échanges professionnels.</p>
+
+      <h3>7. Transmission des données</h3>
+      <p>Les données saisies dans le formulaire de contact sont transmises via :</p>
+      <p><strong>Formspree</strong></p>
+      <p>Formspree est un service permettant la réception et la transmission des formulaires présents sur le site.</p>
+      <p>Les informations envoyées sont ensuite transférées vers l'adresse email professionnelle : <a href="mailto:ppj.parcsetjardins@gmail.com">ppj.parcsetjardins@gmail.com</a></p>
+      <p>Les données peuvent donc être accessibles :</p>
+      <ul>
+        <li>à PPJ, responsable du traitement ;</li>
+        <li>aux prestataires techniques nécessaires au fonctionnement du formulaire.</li>
+      </ul>
+      <p>Aucune donnée personnelle n'est vendue, louée ou transmise à des tiers à des fins commerciales.</p>
+
+      <h3>8. Durée de conservation des données</h3>
+      <p>Les données reçues via le formulaire de contact sont conservées uniquement pendant la durée nécessaire au traitement de la demande.</p>
+      <p>Les échanges peuvent rester stockés dans la messagerie professionnelle de PPJ pendant :</p>
+      <ul>
+        <li>l'étude de la demande ;</li>
+        <li>l'établissement éventuel d'un devis ;</li>
+        <li>le suivi commercial nécessaire.</li>
+      </ul>
+      <p>Une fois ces finalités atteintes, les données sont supprimées lorsque leur conservation n'est plus nécessaire.</p>
+
+      <h3>9. Sécurité des données</h3>
+      <p>PPJ met en œuvre les mesures nécessaires afin de protéger les données personnelles contre :</p>
+      <ul>
+        <li>l'accès non autorisé ;</li>
+        <li>la perte accidentelle ;</li>
+        <li>la modification frauduleuse ;</li>
+        <li>la divulgation non autorisée.</li>
+      </ul>
+      <p>Les prestataires techniques utilisés pour le fonctionnement du site sont sélectionnés afin d'assurer un niveau de sécurité adapté.</p>
+
+      <h3>10. Cookies</h3>
+      <p>Le site ppjparcsetjardins.fr n'utilise actuellement aucun cookie nécessitant un consentement préalable.</p>
+      <p>Aucun outil :</p>
+      <ul>
+        <li>d'analyse d'audience ;</li>
+        <li>de suivi publicitaire ;</li>
+        <li>de profilage ;</li>
+        <li>de marketing comportemental ;</li>
+      </ul>
+      <p>n'est utilisé.</p>
+      <p>Les avis clients présents sur le site sont intégrés manuellement et ne reposent pas sur un module automatique susceptible de déposer des cookies tiers.</p>
+
+      <h3>11. Réseaux sociaux</h3>
+      <p>Le site peut contenir un lien vers la page Facebook de PPJ.</p>
+      <p>Lorsque l'utilisateur clique sur ce lien, il quitte le site et est soumis aux règles de confidentialité propres à Facebook.</p>
+      <p>PPJ et Karbonn. ne peuvent être tenues responsables des traitements effectués par ces plateformes externes.</p>
+
+      <h3>12. Droits des utilisateurs</h3>
+      <p>Conformément au RGPD, chaque utilisateur dispose des droits suivants :</p>
+      <p><strong>Droit d'accès</strong><br>Obtenir la confirmation que des données personnelles le concernant sont traitées et accéder à ces données.</p>
+      <p><strong>Droit de rectification</strong><br>Demander la correction de données inexactes ou incomplètes.</p>
+      <p><strong>Droit à l'effacement</strong><br>Demander la suppression de ses données personnelles lorsque cela est possible.</p>
+      <p><strong>Droit d'opposition</strong><br>S'opposer au traitement de ses données dans certaines situations.</p>
+      <p><strong>Droit à la limitation</strong><br>Demander la limitation temporaire du traitement de ses données.</p>
+      <p><strong>Droit à la portabilité</strong><br>Obtenir ses données dans un format exploitable lorsque ce droit est applicable.</p>
+
+      <h3>13. Exercice des droits</h3>
+      <p>Pour exercer ses droits ou obtenir des informations concernant ses données personnelles, l'utilisateur peut contacter :</p>
+      <p>PPJ<br>Email : <a href="mailto:ppj.parcsetjardins@gmail.com">ppj.parcsetjardins@gmail.com</a></p>
+      <p>La demande devra préciser :</p>
+      <ul>
+        <li>nom et prénom ;</li>
+        <li>adresse email utilisée lors du contact ;</li>
+        <li>objet de la demande.</li>
+      </ul>
+      <p>Une réponse sera apportée dans les délais prévus par la réglementation applicable.</p>
+
+      <h3>14. Réclamation auprès de la CNIL</h3>
+      <p>Si un utilisateur estime que ses droits concernant ses données personnelles ne sont pas respectés, il peut déposer une réclamation auprès de :</p>
+      <p><strong>Commission Nationale de l'Informatique et des Libertés (CNIL)</strong><br>Site officiel : <a href="https://www.cnil.fr/" target="_blank" rel="noopener noreferrer">https://www.cnil.fr</a></p>
+
+      <h3>15. Modification de la Politique de confidentialité</h3>
+      <p>PPJ se réserve le droit de modifier la présente Politique de confidentialité afin de prendre en compte :</p>
+      <ul>
+        <li>les évolutions réglementaires ;</li>
+        <li>les changements techniques ;</li>
+        <li>les modifications des services utilisés.</li>
+      </ul>
+      <p>La date de dernière mise à jour sera indiquée en bas de cette page.</p>
+      <p class="legal-update">Dernière mise à jour : 21 septembre 2026</p>
+    </div>
+  </div>
+
+  <div class="legal-modal" id="modal-cookies" role="dialog" aria-modal="true" aria-labelledby="modal-cookies-title">
+    <div class="legal-modal-head">
+      <h2 id="modal-cookies-title">Politique de gestion des cookies</h2>
+      <div class="legal-modal-actions">
+        <button type="button" class="legal-modal-print" aria-label="Imprimer la politique de cookies">
+          <i class="fa-solid fa-print" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="legal-modal-close" data-modal-close aria-label="Fermer">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <div class="legal-modal-body">
+      <h3>1. Introduction</h3>
+      <p>La présente Politique de gestion des cookies a pour objectif d'informer les utilisateurs du site :<br>ppjparcsetjardins.fr</p>
+      <p>sur l'utilisation éventuelle de cookies et technologies similaires lors de leur navigation.</p>
+      <p>Cette politique complète la <a href="#" data-modal-open="modal-privacy">Politique de confidentialité</a> du site et vise à assurer une information transparente des visiteurs conformément à la réglementation applicable, notamment au Règlement Général sur la Protection des Données (RGPD) et aux recommandations de la CNIL.</p>
+
+      <h3>2. Qu'est-ce qu'un cookie ?</h3>
+      <p>Un cookie est un petit fichier texte enregistré sur l'appareil de l'utilisateur (ordinateur, tablette ou smartphone) lors de la consultation d'un site internet.</p>
+      <p>Les cookies peuvent notamment permettre :</p>
+      <ul>
+        <li>d'assurer le fonctionnement technique d'un site ;</li>
+        <li>de mémoriser certaines préférences de navigation ;</li>
+        <li>de mesurer l'audience d'un site ;</li>
+        <li>d'analyser le comportement des visiteurs ;</li>
+        <li>de proposer des contenus personnalisés.</li>
+      </ul>
+
+      <h3>3. Utilisation des cookies sur le site</h3>
+      <p>Le site ppjparcsetjardins.fr n'utilise actuellement aucun cookie nécessitant le consentement préalable de l'utilisateur.</p>
+      <p>Aucun outil de :</p>
+      <ul>
+        <li>mesure d'audience ;</li>
+        <li>analyse statistique ;</li>
+        <li>publicité ciblée ;</li>
+        <li>suivi marketing ;</li>
+        <li>profilage utilisateur ;</li>
+      </ul>
+      <p>n'est installé sur le site.</p>
+
+      <h3>4. Services présents sur le site</h3>
+      <p><strong>Formulaire de contact</strong></p>
+      <p>Le formulaire de contact permet aux visiteurs d'envoyer une demande à PPJ.</p>
+      <p>Les informations collectées via ce formulaire sont :</p>
+      <ul>
+        <li>Nom complet ;</li>
+        <li>Numéro de téléphone ;</li>
+        <li>Adresse email ;</li>
+        <li>Type de prestation ;</li>
+        <li>Message ;</li>
+        <li>Date d'envoi.</li>
+      </ul>
+      <p>Ces données sont traitées conformément à la <a href="#" data-modal-open="modal-privacy">Politique de confidentialité</a> du site.</p>
+      <p>Le formulaire utilise le service technique Formspree afin d'assurer la transmission des messages.</p>
+      <p><strong>Avis clients</strong></p>
+      <p>Les avis clients affichés sur le site sont intégrés manuellement.</p>
+      <p>Ils ne proviennent pas d'un module automatique, d'une iframe ou d'un outil externe susceptible de déposer des cookies.</p>
+      <p><strong>Réseau social Facebook</strong></p>
+      <p>Le site peut contenir un lien permettant d'accéder à la page Facebook de PPJ.</p>
+      <p>Ce lien ne dépose aucun cookie sur l'appareil de l'utilisateur tant qu'il n'est pas utilisé.</p>
+      <p>Une fois redirigé vers Facebook, l'utilisateur est soumis aux propres règles de confidentialité et de gestion des cookies de cette plateforme.</p>
+
+      <h3>5. Gestion des cookies par l'utilisateur</h3>
+      <p>Même si le site n'utilise actuellement aucun cookie soumis au consentement, l'utilisateur peut configurer son navigateur afin de :</p>
+      <ul>
+        <li>supprimer les cookies déjà enregistrés ;</li>
+        <li>bloquer automatiquement certains cookies ;</li>
+        <li>recevoir une notification avant l'installation de cookies.</li>
+      </ul>
+      <p>Les paramètres de gestion des cookies dépendent du navigateur utilisé.</p>
+
+      <h3>6. Évolution de l'utilisation des cookies</h3>
+      <p>Si de nouveaux services sont ajoutés au site, notamment :</p>
+      <ul>
+        <li>outils statistiques comme Google Analytics ;</li>
+        <li>vidéos intégrées ;</li>
+        <li>cartes interactives ;</li>
+        <li>outils publicitaires ;</li>
+        <li>solutions marketing ;</li>
+      </ul>
+      <p>la présente Politique de gestion des cookies sera mise à jour.</p>
+      <p>Lorsque cela sera nécessaire, un système de recueil du consentement de l'utilisateur pourra être mis en place avant tout dépôt de cookie.</p>
+
+      <h3>7. Responsabilités</h3>
+      <p>Le site ppjparcsetjardins.fr est édité par :</p>
+      <p>Karbonn. – Communication Digitale &amp; Développement Web</p>
+      <p>pour le compte de :</p>
+      <p>PPJ</p>
+      <p>Karbonn. assure la conception et la gestion technique du site.</p>
+      <p>PPJ reste responsable des traitements de données personnelles liés à son activité professionnelle.</p>
+
+      <h3>8. Contact</h3>
+      <p>Pour toute question concernant cette politique ou la protection des données personnelles, l'utilisateur peut contacter :</p>
+      <p>PPJ<br>Email : <a href="mailto:ppj.parcsetjardins@gmail.com">ppj.parcsetjardins@gmail.com</a><br>Téléphone : 06 31 77 28 44</p>
+      <p class="legal-update">Dernière mise à jour : 21 septembre 2026</p>
+    </div>
+  </div>
+
+  <div class="legal-modal" id="modal-cgu" role="dialog" aria-modal="true" aria-labelledby="modal-cgu-title">
+    <div class="legal-modal-head">
+      <h2 id="modal-cgu-title">Conditions générales d'utilisation</h2>
+      <div class="legal-modal-actions">
+        <button type="button" class="legal-modal-print" aria-label="Imprimer les CGU">
+          <i class="fa-solid fa-print" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="legal-modal-close" data-modal-close aria-label="Fermer">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <div class="legal-modal-body">
+      <h3>1. Objet des Conditions Générales d'Utilisation</h3>
+      <p>Les présentes Conditions Générales d'Utilisation (ci-après « CGU ») définissent les règles d'accès et d'utilisation du site internet :<br>ppjparcsetjardins.fr</p>
+      <p>Le site est édité par :<br>Karbonn. – Communication Digitale &amp; Développement Web<br>Représentée par Rémy Cormon<br>SIRET : 942 917 113 00014<br>Adresse : 11 Rue De Dauvet, 27150 Mainneville, France</p>
+      <p>Le site présente l'activité professionnelle de :<br>PPJ<br>Entreprise Individuelle (Micro-entreprise)<br>Représentée par Anael Poyeau</p>
+      <p>Les présentes CGU ont pour objectif d'encadrer l'utilisation du site par tout visiteur.</p>
+      <p>Toute personne consultant le site reconnaît avoir pris connaissance des présentes conditions et accepte de les respecter.</p>
+
+      <h3>2. Accès au site</h3>
+      <p>L'accès au site ppjparcsetjardins.fr est libre et gratuit.</p>
+      <p>L'utilisateur doit disposer des équipements nécessaires permettant l'accès à Internet. Les éventuels frais liés à cette connexion restent entièrement à sa charge.</p>
+      <p>Karbonn. s'efforce d'assurer une disponibilité optimale du site mais ne garantit pas un accès permanent et sans interruption.</p>
+      <p>Des opérations de maintenance, de mise à jour ou des événements indépendants de la volonté de l'éditeur peuvent entraîner une interruption temporaire du service.</p>
+
+      <h3>3. Présentation des services</h3>
+      <p>Le site a pour objectif de présenter les activités de :</p>
+      <p>PPJ</p>
+      <p>Les prestations présentées comprennent notamment :</p>
+      <ul>
+        <li>Tonte &amp; débrousaillage ;</li>
+        <li>Taille de haie / arbustes ;</li>
+        <li>Abattage d'arbres ;</li>
+        <li>Plantation ;</li>
+        <li>Désherbage ;</li>
+        <li>Petits travaux extérieurs ;</li>
+        <li>Autres demandes.</li>
+      </ul>
+      <p>Les informations présentes sur le site sont communiquées à titre informatif.</p>
+      <p>PPJ se réserve le droit de modifier ses prestations, ses tarifs ou les informations présentées sur le site à tout moment.</p>
+
+      <h3>4. Utilisation du formulaire de contact</h3>
+      <p>Le site permet aux visiteurs de contacter PPJ via un formulaire en ligne.</p>
+      <p>L'utilisateur s'engage à fournir des informations exactes et sincères.</p>
+      <p>Le formulaire doit uniquement être utilisé dans un cadre professionnel lié aux prestations proposées.</p>
+      <p>Il est strictement interdit d'utiliser ce formulaire pour :</p>
+      <ul>
+        <li>transmettre des informations frauduleuses ;</li>
+        <li>envoyer des contenus illicites ;</li>
+        <li>diffuser des messages malveillants ;</li>
+        <li>effectuer du démarchage abusif ;</li>
+        <li>perturber le fonctionnement du site.</li>
+      </ul>
+      <p>Toute utilisation abusive pourra entraîner des mesures appropriées.</p>
+
+      <h3>5. Protection des données personnelles</h3>
+      <p>Dans le cadre de l'utilisation du formulaire de contact, certaines données personnelles peuvent être collectées :</p>
+      <ul>
+        <li>Nom complet ;</li>
+        <li>Numéro de téléphone ;</li>
+        <li>Adresse email ;</li>
+        <li>Type de prestation ;</li>
+        <li>Message envoyé.</li>
+      </ul>
+      <p>Ces informations sont utilisées uniquement afin de :</p>
+      <ul>
+        <li>répondre aux demandes des visiteurs ;</li>
+        <li>établir des devis ;</li>
+        <li>assurer le suivi des échanges.</li>
+      </ul>
+      <p>Le traitement des données personnelles est effectué sous la responsabilité de :</p>
+      <p>PPJ</p>
+      <p>Karbonn. intervient uniquement en qualité de prestataire technique chargé de la conception et de la gestion du site.</p>
+      <p>Pour plus d'informations, l'utilisateur peut consulter la <a href="#" data-modal-open="modal-privacy">Politique de confidentialité</a> disponible sur le site.</p>
+
+      <h3>6. Propriété intellectuelle</h3>
+      <p>L'ensemble des contenus présents sur le site ppjparcsetjardins.fr est protégé par les règles relatives à la propriété intellectuelle.</p>
+      <p>Sont notamment concernés :</p>
+      <ul>
+        <li>textes ;</li>
+        <li>photographies ;</li>
+        <li>logos ;</li>
+        <li>illustrations ;</li>
+        <li>éléments graphiques ;</li>
+        <li>design du site ;</li>
+        <li>composants techniques ;</li>
+        <li>code informatique.</li>
+      </ul>
+      <p>Les contenus fournis par PPJ restent sa propriété.</p>
+      <p>Les éléments graphiques, techniques et créations originales réalisés par Karbonn. restent la propriété de Karbonn.</p>
+      <p>Toute reproduction, représentation, modification, extraction ou utilisation totale ou partielle des éléments du site est interdite sans autorisation préalable écrite et signée du titulaire des droits concernés.</p>
+
+      <h3>7. Responsabilité de l'utilisateur</h3>
+      <p>L'utilisateur s'engage à utiliser le site conformément :</p>
+      <ul>
+        <li>aux présentes CGU ;</li>
+        <li>aux lois et réglementations françaises applicables.</li>
+      </ul>
+      <p>Il est notamment interdit de :</p>
+      <ul>
+        <li>tenter d'accéder à des parties non autorisées du site ;</li>
+        <li>introduire des virus ou programmes malveillants ;</li>
+        <li>porter atteinte au fonctionnement du site ;</li>
+        <li>copier les contenus dans un but commercial sans autorisation.</li>
+      </ul>
+
+      <h3>8. Responsabilité de l'éditeur</h3>
+      <p>Karbonn. assure la conception et la gestion technique du site.</p>
+      <p>À ce titre, Karbonn. met en œuvre les moyens nécessaires afin d'assurer le bon fonctionnement du site.</p>
+      <p>Cependant, Karbonn. ne pourra être tenue responsable :</p>
+      <ul>
+        <li>d'une interruption temporaire du site ;</li>
+        <li>d'une panne technique indépendante de sa volonté ;</li>
+        <li>d'une perte de données liée à un événement extérieur ;</li>
+        <li>d'un usage incorrect du site par un utilisateur.</li>
+      </ul>
+
+      <h3>9. Responsabilité concernant les informations professionnelles</h3>
+      <p>PPJ demeure seule responsable :</p>
+      <ul>
+        <li>des prestations proposées ;</li>
+        <li>des informations commerciales publiées ;</li>
+        <li>des photographies de réalisations ;</li>
+        <li>des engagements professionnels présentés sur le site.</li>
+      </ul>
+      <p>Karbonn. agit uniquement comme prestataire de création et de gestion du site internet.</p>
+
+      <h3>10. Liens externes</h3>
+      <p>Le site peut contenir des liens vers des sites ou plateformes externes, notamment des réseaux sociaux.</p>
+      <p>Ces sites tiers disposent de leurs propres conditions d'utilisation et politiques de confidentialité.</p>
+      <p>Karbonn. et PPJ ne peuvent être tenues responsables du contenu ou du fonctionnement de ces services externes.</p>
+
+      <h3>11. Modification des CGU</h3>
+      <p>Karbonn. se réserve le droit de modifier les présentes Conditions Générales d'Utilisation à tout moment afin de tenir compte des évolutions :</p>
+      <ul>
+        <li>techniques ;</li>
+        <li>juridiques ;</li>
+        <li>fonctionnelles.</li>
+      </ul>
+      <p>La version applicable est celle publiée sur le site au moment de la navigation de l'utilisateur.</p>
+
+      <h3>12. Droit applicable</h3>
+      <p>Les présentes Conditions Générales d'Utilisation sont régies par le droit français.</p>
+      <p>En cas de difficulté ou de litige concernant l'utilisation du site, les parties rechercheront une solution amiable avant toute action judiciaire.</p>
+      <p>À défaut d'accord, le litige sera soumis aux juridictions françaises compétentes.</p>
+      <p class="legal-update">Dernière mise à jour : 21 septembre 2026</p>
     </div>
   </div>
 
   <div class="legal-modal" id="modal-legal" role="dialog" aria-modal="true" aria-labelledby="modal-legal-title">
     <div class="legal-modal-head">
       <h2 id="modal-legal-title">Mentions légales</h2>
-      <button type="button" class="legal-modal-close" data-modal-close aria-label="Fermer">
-        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-      </button>
+      <div class="legal-modal-actions">
+        <button type="button" class="legal-modal-print" aria-label="Imprimer les mentions légales">
+          <i class="fa-solid fa-print" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="legal-modal-close" data-modal-close aria-label="Fermer">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
     </div>
     <div class="legal-modal-body">
-      <h3>Éditeur du site</h3>
-      <p>Anaël Poyeau PPJ — Parcs et Jardins<br>Gauciel (27930), France<br>Téléphone : 06 31 77 28 44<br>E-mail : <a href="mailto:ppj.parcsetjardins@gmail.com">ppj.parcsetjardins@gmail.com</a></p>
-      <h3>Conception et développement</h3>
-      <p>Site imaginé, conçu et développé par <a href="https://karbonn.fr/" target="_blank" rel="noopener noreferrer">KARBONN.</a></p>
-      <h3>Propriété intellectuelle</h3>
-      <p>L'ensemble des contenus présents sur ce site (textes, images, logo) est protégé par le droit de la propriété intellectuelle. Toute reproduction ou utilisation sans autorisation préalable est interdite.</p>
+      <h3>1. Éditeur du site</h3>
+      <p>Le présent site internet ppjparcsetjardins.fr est édité par :<br>Karbonn. – Communication Digitale &amp; Développement Web<br>Entreprise représentée par : Rémy Cormon<br>SIRET : 942 917 113 00014</p>
+      <p><strong>Adresse du siège social :</strong><br>11 Rue De Dauvet<br>27150 Mainneville<br>France</p>
+      <p>Adresse email : <a href="mailto:hello@karbonn.fr">hello@karbonn.fr</a><br>Site internet : <a href="https://karbonn.fr/" target="_blank" rel="noopener noreferrer">karbonn.fr</a></p>
+
+      <h3>2. Objet du site</h3>
+      <p>Le site ppjparcsetjardins.fr a pour objectif de présenter l'activité professionnelle de :<br>PPJ<br>Entreprise Individuelle (Micro-entreprise)<br>Représentée par : Anael POYEAU</p>
+      <p><strong>Adresse :</strong><br>Gauciel (27930)<br>France</p>
+      <p>Téléphone : 06 31 77 28 44<br>Email : <a href="mailto:ppj.parcsetjardins@gmail.com">ppj.parcsetjardins@gmail.com</a></p>
+      <p>Le site présente les prestations proposées par PPJ dans le domaine du paysagisme liés à l'entretien des extérieurs.</p>
+
+      <h3>3. Directeur de la publication</h3>
+      <p>Le directeur de la publication du site est :</p>
+      <p>Rémy Cormon<br>En qualité de représentant de Karbonn. – Communication Digitale &amp; Développement Web, éditeur du site.</p>
+
+      <h3>4. Hébergement du site</h3>
+      <p>Le site est hébergé par :</p>
+      <p><strong>OVH SAS</strong><br>Société par actions simplifiée au capital de : 50 000 000 €</p>
+      <p>RCS Lille Métropole : 424 761 419 00045<br>Code APE : 2620Z<br>Numéro TVA intracommunautaire : FR 22 424 761 419</p>
+      <p><strong>Siège social :</strong><br>2 rue Kellermann<br>59100 Roubaix<br>France</p>
+      <p>OVH SAS est une filiale de la société OVH Groupe SA, société immatriculée au RCS de Lille sous le numéro : 537 407 926<br>Directeur de la publication : Octave Klaba</p>
+
+      <h3>5. Conception et réalisation du site</h3>
+      <p>Le site ppjparcsetjardins.fr a été conçu, développé et intégré par :<br>Karbonn. – Communication Digitale &amp; Développement Web</p>
+      <p>Karbonn. assure notamment :</p>
+      <ul>
+        <li>la conception graphique ;</li>
+        <li>le développement du site ;</li>
+        <li>l'intégration des contenus ;</li>
+        <li>les optimisations techniques ;</li>
+        <li>la maintenance et le suivi technique du site.</li>
+      </ul>
+      <p>Les éléments créatifs réalisés par Karbonn., notamment :</p>
+      <ul>
+        <li>interfaces graphiques ;</li>
+        <li>animations ;</li>
+        <li>composants visuels ;</li>
+        <li>éléments de design ;</li>
+        <li>illustrations originales ;</li>
+      </ul>
+      <p>restent protégés par les droits de propriété intellectuelle applicables.</p>
+      <p>Toute reproduction, copie, modification ou réutilisation sans autorisation préalable écrite et signée de Karbonn. est interdite.</p>
+
+      <h3>6. Responsabilité des contenus</h3>
+      <p>Les informations relatives aux prestations, réalisations, services et activités présentées sur le site sont fournies par :</p>
+      <p>PPJ</p>
+      <p>Cette dernière reste responsable des informations liées à son activité professionnelle, notamment :</p>
+      <ul>
+        <li>les prestations proposées ;</li>
+        <li>les informations commerciales ;</li>
+        <li>les photographies de réalisations ;</li>
+        <li>les garanties et engagements professionnels.</li>
+      </ul>
+      <p>Karbonn. intervient uniquement dans la conception et la gestion technique du site et ne peut être tenue responsable du contenu métier fourni par le client.</p>
+
+      <h3>7. Services proposés</h3>
+      <p>PPJ propose notamment :</p>
+      <ul>
+        <li>Tonte &amp; débrousaillage ;</li>
+        <li>Taille de haie / arbustes ;</li>
+        <li>Abattage d'arbres ;</li>
+        <li>Plantation ;</li>
+        <li>Désherbage ;</li>
+        <li>Petits travaux extérieurs ;</li>
+        <li>Autres demandes.</li>
+      </ul>
+      <p>La zone principale d'intervention concerne : Gauciel et ses alentours dans un rayon de 35 km maximum.</p>
+      <p>Les informations présentes sur le site sont communiquées à titre indicatif et peuvent évoluer selon les prestations proposées.</p>
+
+      <h3>8. Propriété intellectuelle</h3>
+      <p>L'ensemble des éléments présents sur le site ppjparcsetjardins.fr est protégé par les lois françaises et internationales relatives à la propriété intellectuelle.</p>
+      <p>Sont notamment concernés :</p>
+      <ul>
+        <li>textes ;</li>
+        <li>photographies ;</li>
+        <li>logos ;</li>
+        <li>images ;</li>
+        <li>illustrations ;</li>
+        <li>éléments graphiques ;</li>
+        <li>structure du site ;</li>
+        <li>code et composants techniques.</li>
+      </ul>
+      <p>Les contenus appartenant à PPJ restent sa propriété.</p>
+      <p>Les créations graphiques, éléments techniques et développements réalisés par Karbonn. restent la propriété de Karbonn. sauf accord spécifique contraire.</p>
+      <p>Toute exploitation, reproduction, représentation, extraction ou modification totale ou partielle du site sans autorisation écrite et signée des ayants droit est strictement interdite.</p>
+
+      <h3>9. Données personnelles</h3>
+      <p>Dans le cadre de l'utilisation du formulaire de contact, certaines données personnelles peuvent être collectées :</p>
+      <ul>
+        <li>Nom complet ;</li>
+        <li>Téléphone ;</li>
+        <li>Adresse email ;</li>
+        <li>Type de prestation souhaitée ;</li>
+        <li>Message envoyé.</li>
+      </ul>
+      <p>Ces données sont utilisées uniquement afin de :</p>
+      <ul>
+        <li>répondre aux demandes des visiteurs ;</li>
+        <li>établir des devis ;</li>
+        <li>assurer le suivi des échanges commerciaux.</li>
+      </ul>
+      <p>Le traitement des données personnelles est effectué sous la responsabilité de :</p>
+      <p>PPJ</p>
+      <p>Karbonn. intervient uniquement en qualité de prestataire technique chargé de la conception et de la gestion du site.</p>
+      <p>Pour plus d'informations, l'utilisateur peut consulter la <a href="#" data-modal-open="modal-privacy">Politique de confidentialité</a> disponible sur le site.</p>
+
+      <h3>10. Liens externes</h3>
+      <p>Le site peut contenir des liens vers des services externes, notamment les réseaux sociaux.</p>
+      <p>PPJ et Karbonn. ne peuvent être tenues responsables du contenu, du fonctionnement ou des pratiques de confidentialité de ces plateformes tierces.</p>
+      <p>L'utilisateur est invité à consulter les conditions d'utilisation propres à chaque service externe.</p>
+
+      <h3>11. Disponibilité du site</h3>
+      <p>Karbonn. met en œuvre les moyens nécessaires afin d'assurer le bon fonctionnement du site.</p>
+      <p>Cependant, des interruptions temporaires peuvent survenir notamment pour :</p>
+      <ul>
+        <li>maintenance ;</li>
+        <li>mises à jour ;</li>
+        <li>raisons techniques indépendantes de la volonté de l'éditeur.</li>
+      </ul>
+      <p>Karbonn. ne peut garantir une disponibilité permanente et sans interruption du site.</p>
+
+      <h3>12. Droit applicable</h3>
+      <p>Les présentes mentions légales sont soumises au droit français.</p>
+      <p>En cas de litige relatif à l'utilisation du site, les parties rechercheront prioritairement une solution amiable.</p>
+      <p>À défaut d'accord amiable, le litige sera soumis aux juridictions françaises compétentes.</p>
+      <p class="legal-update">Dernière mise à jour : 21 septembre 2026</p>
     </div>
   </div>
 
