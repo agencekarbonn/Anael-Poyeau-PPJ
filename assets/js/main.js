@@ -226,33 +226,49 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { setPinHeight(); updateRealisations(); });
   }
 
-  const form = document.querySelector('.quote-form');
-  const proFields = form?.querySelector('.pro-fields');
-  const proInputs = proFields ? [...proFields.querySelectorAll('input')] : [];
-  const typeRadios = form ? [...form.querySelectorAll('input[name="type_client"]')] : [];
+  // Deux formulaires distincts (Particulier / Professionnel), un seul affiché à la fois
+  // selon le choix "Vous êtes", chacun avec sa propre action Formspree.
+  const formParticulier = document.getElementById('form-particulier');
+  const formPro = document.getElementById('form-professionnel');
+  const typeRadios = [...document.querySelectorAll('input[name="type_client"]')];
 
-  const updateProFields = () => {
-    const isPro = form?.querySelector('input[name="type_client"]:checked')?.value === 'professionnel';
-    proFields.hidden = !isPro;
-    proInputs.forEach((input) => {
-      input.required = isPro;
-      if (!isPro) input.value = '';
-    });
+  const updateFormVisibility = () => {
+    const isPro = document.querySelector('input[name="type_client"]:checked')?.value === 'professionnel';
+    if (formParticulier) formParticulier.hidden = isPro;
+    if (formPro) formPro.hidden = !isPro;
   };
 
   if (typeRadios.length) {
-    typeRadios.forEach((radio) => radio.addEventListener('change', updateProFields));
-    updateProFields();
+    typeRadios.forEach((radio) => radio.addEventListener('change', updateFormVisibility));
+    updateFormVisibility();
   }
 
-  form?.addEventListener('submit', (event) => {
+  const handleFormSubmit = async (form, event) => {
     event.preventDefault();
     const honeypot = form.querySelector('.form-honeypot');
     if (honeypot && honeypot.value.trim() !== '') return;
     if (!form.reportValidity()) return;
-    form.querySelector('.form-status').textContent = 'Merci ! Votre demande a bien été envoyée, nous vous recontactons sous 48h.';
-    form.reset();
-    updateProFields();
+    const status = form.querySelector('.form-status');
+    status.textContent = 'Envoi en cours…';
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (response.ok) {
+        status.textContent = 'Merci ! Votre demande a bien été envoyée, nous vous recontactons sous 48h.';
+        form.reset();
+      } else {
+        status.textContent = 'Une erreur est survenue. Merci de réessayer ou de nous contacter directement.';
+      }
+    } catch (error) {
+      status.textContent = 'Une erreur est survenue. Vérifiez votre connexion et réessayez.';
+    }
+  };
+
+  [formParticulier, formPro].forEach((form) => {
+    form?.addEventListener('submit', (event) => handleFormSubmit(form, event));
   });
 
   // Modales plein écran (Politique de confidentialité, Mentions légales)
@@ -275,6 +291,7 @@
     });
   });
   document.querySelectorAll('[data-modal-close]').forEach((btn) => btn.addEventListener('click', closeModal));
+  document.querySelectorAll('.legal-modal-print').forEach((btn) => btn.addEventListener('click', () => window.print()));
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeModal();
   });
